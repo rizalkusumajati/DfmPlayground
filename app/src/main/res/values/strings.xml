@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">DfmPlayground</string>
+    <string name="title_dfminstallforeground">foreground</string>
+    <string name="title_dfminstallbackground">background</string>
+</resources>
