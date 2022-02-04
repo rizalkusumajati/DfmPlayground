@@ -72,22 +72,27 @@ class MainActivity : AppCompatActivity() {
         splitInstallManager.registerListener(listener)
 
         buttonForeground.setOnClickListener {
-            splitInstallManager
-                // Submits the request to install the module through the
-                // asynchronous startInstall() task. Your app needs to be
-                // in the foreground to submit the request.
-                .startInstall(request)
-                // You should also be able to gracefully handle
-                // request state changes and errors. To learn more, go to
-                // the section about how to Monitor the request state.
-                .addOnSuccessListener { sessionId ->
-                    if(sessionId == mySessionId) {
-                        Log.d("DFM", "Success Install : $sessionId")
-                        Log.d("DFM", installedModules.toString())
-                    }
+            if (splitInstallManager.installedModules.contains("dfminstallforeground")){
+                startActivity(Intent().setClassName("com.example.dfmplayground","com.example.dfminstallforeground.ForegroundActivity"))
+            }else{
+                splitInstallManager
+                    // Submits the request to install the module through the
+                    // asynchronous startInstall() task. Your app needs to be
+                    // in the foreground to submit the request.
+                    .startInstall(request)
+                    // You should also be able to gracefully handle
+                    // request state changes and errors. To learn more, go to
+                    // the section about how to Monitor the request state.
+                    .addOnSuccessListener { sessionId ->
+                        if(sessionId == mySessionId) {
+                            Log.d("DFM", "Success Install : $sessionId")
+                            Log.d("DFM", installedModules.toString())
+                        }
 //
-                 }
-                .addOnFailureListener { exception ->  Log.d("DFM", "Failed Install") }
+                    }
+                    .addOnFailureListener { exception ->  Log.d("DFM", "Failed Install : ${exception.localizedMessage}") }
+
+            }
 
 
         }
