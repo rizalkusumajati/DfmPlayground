@@ -98,7 +98,40 @@ class MainActivity : AppCompatActivity() {
         }
 
         buttonBackground.setOnClickListener {
-            startActivity(Intent().setClassName("com.example.dfmplayground", "com.example.dfminstallbackground.BackgroundActivity"))
+            if (splitInstallManager.installedModules.contains("dfminstallbackground")) {
+                startActivity(
+                    Intent().setClassName(
+                        "com.example.dfmplayground",
+                        "com.example.dfminstallbackground.BackgroundActivity"
+                    )
+                )
+            }else{
+                val request2 =
+                    SplitInstallRequest
+                        .newBuilder()
+                        // You can download multiple on demand modules per
+                        // request by invoking the following method for each
+                        // module you want to install.
+                        .addModule("dfminstallbackground")
+                        .build()
+                splitInstallManager
+                    // Submits the request to install the module through the
+                    // asynchronous startInstall() task. Your app needs to be
+                    // in the foreground to submit the request.
+                    .startInstall(request2)
+                    // You should also be able to gracefully handle
+                    // request state changes and errors. To learn more, go to
+                    // the section about how to Monitor the request state.
+                    .addOnSuccessListener { sessionId ->
+                        if(sessionId == mySessionId) {
+                            Log.d("DFM", "Success Install : $sessionId")
+                            Log.d("DFM", installedModules.toString())
+                        }
+//
+                    }
+                    .addOnFailureListener { exception ->  Log.d("DFM", "Failed Install : ${exception.localizedMessage}") }
+
+            }
         }
 
     }
