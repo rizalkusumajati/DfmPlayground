@@ -22,9 +22,6 @@ class MainActivity : AppCompatActivity() {
         val buttonForeground = findViewById<Button>(R.id.button)
         val buttonBackground = findViewById<Button>(R.id.buttonbackground)
 
-
-
-
         val splitInstallManager = SplitInstallManagerFactory.create(this)
         val installedModules: Set<String> = splitInstallManager.installedModules
 
@@ -73,7 +70,6 @@ class MainActivity : AppCompatActivity() {
 
         Log.d("DFM", splitInstallManager.installedModules.toString())
         splitInstallManager.registerListener(listener)
-//        splitInstallManager.unregisterListener(listener)
 
         buttonForeground.setOnClickListener {
             splitInstallManager
