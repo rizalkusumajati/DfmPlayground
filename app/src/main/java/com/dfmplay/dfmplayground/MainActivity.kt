@@ -1,4 +1,4 @@
-package com.example.dfmplayground
+package com.dfmplay.dfmplayground
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.Toast
+import com.dfmplay.dfmplayground.R
 import com.google.android.play.core.ktx.requestDeferredInstall
 import com.google.android.play.core.splitinstall.SplitInstallManagerFactory
 import com.google.android.play.core.splitinstall.SplitInstallRequest
@@ -45,7 +46,7 @@ class MainActivity : AppCompatActivity() {
                     SplitInstallSessionStatus.INSTALLED -> {
                         Log.d("DFM","INSTALLED")
                         Log.d("DFM", splitInstallManager.installedModules.toString())
-                        startActivity(Intent().setClassName("com.example.dfmplayground","com.example.dfminstallforeground.ForegroundActivity"))
+                        startActivity(Intent().setClassName("com.dfmplay.dfmplayground","com.dfmplay.dfminstallforeground.ForegroundActivity"))
                     }
                     SplitInstallSessionStatus.PENDING -> {
                         Log.d("DFM","PENDING")
@@ -73,7 +74,7 @@ class MainActivity : AppCompatActivity() {
 
         buttonForeground.setOnClickListener {
             if (splitInstallManager.installedModules.contains("dfminstallforeground")){
-                startActivity(Intent().setClassName("com.example.dfmplayground","com.example.dfminstallforeground.ForegroundActivity"))
+                startActivity(Intent().setClassName("com.dfmplay.dfmplayground","com.dfmplay.dfminstallforeground.ForegroundActivity"))
             }else{
                 splitInstallManager
                     // Submits the request to install the module through the
@@ -93,16 +94,14 @@ class MainActivity : AppCompatActivity() {
                     .addOnFailureListener { exception ->  Log.d("DFM", "Failed Install : ${exception.localizedMessage}") }
 
             }
-
-
         }
 
         buttonBackground.setOnClickListener {
             if (splitInstallManager.installedModules.contains("dfminstallbackground")) {
                 startActivity(
                     Intent().setClassName(
-                        "com.example.dfmplayground",
-                        "com.example.dfminstallbackground.BackgroundActivity"
+                        "com.dfmplay.dfmplayground",
+                        "com.dfmplay.dfminstallbackground.BackgroundActivity"
                     )
                 )
             }else{

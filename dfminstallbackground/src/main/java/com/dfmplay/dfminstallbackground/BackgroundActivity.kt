@@ -1,8 +1,9 @@
-package com.example.dfminstallbackground
+package com.dfmplay.dfminstallbackground
 
 import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.dfmplay.dfminstallbackground.R
 import com.google.android.play.core.splitcompat.SplitCompat
 
 class BackgroundActivity : AppCompatActivity() {

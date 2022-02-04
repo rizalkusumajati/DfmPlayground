@@ -1,4 +1,4 @@
-package com.example.dfmplayground
+package com.dfmplay.dfmplayground
 
 import com.google.android.play.core.splitcompat.SplitCompatApplication
 

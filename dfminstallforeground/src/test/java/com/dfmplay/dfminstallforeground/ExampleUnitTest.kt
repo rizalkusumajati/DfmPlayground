@@ -1,4 +1,4 @@
-package com.example.dfminstallforeground
+package com.dfmplay.dfminstallforeground
 
 import org.junit.Test
 

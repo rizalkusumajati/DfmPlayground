@@ -2,7 +2,7 @@
 <manifest
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:dist="http://schemas.android.com/apk/distribution"
-    package="com.example.dfminstallbackground">
+    package="com.dfmplay.dfminstallbackground">
 
     <dist:module
         dist:instant="false"
@@ -16,7 +16,7 @@
 
     <application>
         <activity
-            android:name=".BackgroundActivity"
+            android:name="com.dfmplay.dfminstallbackground.BackgroundActivity"
             android:exported="false" />
     </application>
 
